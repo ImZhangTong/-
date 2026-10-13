@@ -5,7 +5,7 @@
 ## 一、开发环境
 
 ```bash
-git clone <your-fork-url>
+git clone https://github.com/ImZhangTong/-.git      # 或你的 fork 地址
 cd FinResearchAI
 
 # 推荐用项目自带虚拟环境（Windows 双击 run_app.bat 也会自动创建）

@@ -4,6 +4,7 @@
 > 不用写 Stata 代码：上传 Excel → 点选变量与模型 → 自动生成 do 文件 → 调用本地 Stata → 直接拿到**论文格式结果表**。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Repo](https://img.shields.io/badge/GitHub-ImZhangTong%2F--181717.svg)](https://github.com/ImZhangTong/-)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![Stata](https://img.shields.io/badge/Engine-Stata%2014%2B-1a5276.svg)](https://www.stata.com/)
@@ -80,6 +81,10 @@
 ### 方式二：手动启动（任意平台）
 
 ```bash
+# 0. 获取代码
+git clone https://github.com/ImZhangTong/-.git
+cd -
+
 # 1. 准备环境（Python 3.9+）
 python -m venv .venv
 # Windows

@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 立理（Lili）contributors
+Copyright (c) 2026 zhibai
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -27,4 +27,4 @@ SOFTWARE.
    商业软件，使用者需自行拥有合法授权。本项目不包含、不分发 Stata 本体。
 2. do 文件中会调用 reghdfe、ftools、estout 等 Stata 外部命令，它们由各自
    作者通过 SSC 发布，遵循各自的许可协议，本项目仅自动调用、不作修改与分发。
-3. 若你是论文作者，请把上面的 Copyright 行替换为你的姓名/机构名。
+3. 当前版权署名：zhibai（仓库：https://github.com/ImZhangTong/-.git）。如需改为姓名+机构形式，直接修改上面的 Copyright 行即可。
