@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+"""配置包：对外暴露全局配置对象与常用路径。"""
+
+from .config import (  # noqa: F401
+    APP_BRAND,
+    APP_NAME,
+    APP_NAME_EN,
+    APP_TAG,
+    APP_TAGLINE,
+    APP_VERSION,
+    BASE_DIR,
+    CODE_DIR,
+    CONFIG,
+    Config,
+    DATA_DIR,
+    OUTPUT_DIR,
+    PREPARED_DIR,
+    RESULT_DIR,
+    RUN_DIR,
+    TEMPLATE_DIR,
+    ensure_dirs,
+    environment_report,
+    find_stata_paths,
+    resolve_stata_path,
+)
+
+__all__ = [
+    "APP_BRAND",
+    "APP_NAME",
+    "APP_NAME_EN",
+    "APP_TAG",
+    "APP_TAGLINE",
+    "APP_VERSION",
+    "CONFIG",
+    "Config",
+    "BASE_DIR",
+    "DATA_DIR",
+    "OUTPUT_DIR",
+    "RESULT_DIR",
+    "CODE_DIR",
+    "RUN_DIR",
+    "PREPARED_DIR",
+    "TEMPLATE_DIR",
+    "ensure_dirs",
+    "environment_report",
+    "find_stata_paths",
+    "resolve_stata_path",
+]

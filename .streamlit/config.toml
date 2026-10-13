@@ -1,0 +1,31 @@
+# 立理（Lili）—— Streamlit 运行配置
+# ============================================================
+# 本文件用于避免每次启动都要手动确认/输入信息，保证「双击即可用」：
+#   server.headless = true
+#       —— 关键项。Streamlit 的 check_credentials() 只在「凭据文件不存在
+#          且 headless 为假」时才弹出 "Email:" 交互提示；一旦弹出，命令行
+#          会一直等待输入，服务永远起不来（这就是"双击后一直卡住"的原因）。
+#          浏览器由 scripts/launcher.py 负责延时打开，不影响使用体验。
+#   browser.gatherUsageStats = false
+#       —— 关闭使用数据统计。
+#   server.maxUploadSize = 200
+#       —— 上传数据文件最大 200MB（面板数据常有几十万行）。
+# ============================================================
+
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true
+port = 8501
+maxUploadSize = 200
+fileWatcherType = "auto"
+
+[theme]
+base = "light"
+
+[runner]
+fastReruns = true
+
+# 提示：若你想手动运行并让浏览器自动弹出，请执行：
+#   python -m streamlit run app.py --server.headless=false

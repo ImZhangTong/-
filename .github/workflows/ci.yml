@@ -1,0 +1,71 @@
+# 立理（Lili）—— 持续集成
+# ======================================================================
+# 在每次 push / PR 时自动完成：
+#   1. 多平台（Ubuntu + Windows）× 多 Python 版本的语法与导入检查
+#   2. 端到端冒烟测试（无 Stata 环境时自动降级测试解析器与错误提示）
+#   3. 界面自动化测试（Streamlit AppTest，无浏览器真实执行 app.py）
+# ======================================================================
+
+name: CI
+
+on:
+  push:
+    branches: [main, master, dev]
+  pull_request:
+    branches: [main, master, dev]
+  workflow_dispatch:          # 支持手动触发
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.13"]
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 语法与导入检查
+        run: |
+          python -m compileall -q app.py config models stata utils scripts tests
+          python -c "import sys; sys.path.insert(0,'.'); from models import list_models; from stata import stata_status; from utils import report, data_loader, variable_detect, fallback_engine; print('全部模块导入成功'); print('模型：', [m['name'] for m in list_models()])"
+
+      - name: 端到端冒烟测试（73 项）
+        run: python tests/smoke_test.py
+        env:
+          # CI 环境没有 Stata，测试会自动改测错误提示与解析器逻辑；
+          # 同时把 Streamlit 的运行配置设为无交互，避免任何提示阻塞。
+          STREAMLIT_SERVER_HEADLESS: "true"
+          STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+
+      - name: 界面自动化测试（33 项）
+        run: python tests/app_test.py
+        env:
+          STREAMLIT_SERVER_HEADLESS: "true"
+          STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+
+      - name: 上传测试产物（失败时便于排查）
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ matrix.os }}-py${{ matrix.python-version }}
+          path: |
+            output/run/
+            output/result/
+          if-no-files-found: ignore
+          retention-days: 7

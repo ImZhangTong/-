@@ -1,0 +1,32 @@
+# ======================================================================
+#  Git 属性配置 —— 统一跨平台换行符，避免"整个文件都被改动"的假 diff
+# ======================================================================
+
+# 默认：自动识别文本文件，统一以 LF 存入仓库（对 Python/Linux 友好）
+* text=auto eol=lf
+
+# Windows 批处理必须是 CRLF，否则 cmd.exe 解析会出错
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# 各类脚本显式声明
+*.py  text eol=lf
+*.tpl text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
+*.md  text eol=lf
+
+# 二进制文件不做任何换行符转换
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary
+*.xlsx binary
+*.xls  binary
+*.docx binary
+*.rtf  binary
+*.zip  binary
+
+# 让 GitHub 把 do 文件按 Stata 语法高亮，RTF 按文本统计
+*.do linguist-language=Stata
+*.tpl linguist-language=Stata

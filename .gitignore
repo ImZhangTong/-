@@ -1,0 +1,65 @@
+# ======================================================================
+#  立理（Lili）—— Git 忽略规则
+# ======================================================================
+
+# ---------- Python 运行产物 ----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ---------- 虚拟环境（体积大、含本机绝对路径，不入库）----------
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# ---------- 本项目运行产物：全部结果与中间文件 ----------
+#   注意：output/ 下的 do 文件、结果表、Stata 日志都是"运行时产物"，
+#        属于每个使用者的研究成果，不应进入版本库。
+#   保留目录结构（.gitkeep），但忽略其中所有内容。
+output/run/*
+output/result/*
+output/code/*
+output/prepared/*
+!output/run/.gitkeep
+!output/result/.gitkeep
+!output/code/.gitkeep
+!output/prepared/.gitkeep
+
+# ---------- 用户本机配置（含 Stata 安装路径等个人信息）----------
+config/user_config.json
+.streamlit/secrets.toml
+
+# ---------- 编辑器 / 系统 ----------
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ---------- 测试与调试临时文件 ----------
+tests/_*.txt
+*.log
+!output/run/**/.gitkeep
+
+# ---------- 打包产物 ----------
+*.zip
+!data/*.zip

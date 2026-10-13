@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+# =====================================================================
+# 立理 —— 运行依赖清单
+# 安装命令： pip install -r requirements.txt
+# 若使用 Anaconda： conda install pandas numpy openpyxl scipy python-docx
+#                 pip install streamlit
+# =====================================================================
+
+# ---- 界面框架 ----
+# 说明：>=1.50 才支持 st.dataframe / st.button 的 width 参数（旧版为 use_container_width）
+streamlit>=1.50.0
+
+# ---- 数据处理 ----
+pandas>=1.5.0
+numpy>=1.23.0
+
+# ---- Excel 读写（.xlsx 用 openpyxl，.xls 用 xlrd）----
+openpyxl>=3.0.0
+xlrd>=2.0.0
+
+# ---- 报告导出（Word 三线表）----
+python-docx>=1.0.0
+
+# ---- 统计分布（计算 t 分布 p 值）----
+scipy>=1.9.0
+
+# =====================================================================
+# 以下为第二阶段（AI / 计量扩展）可能用到的可选依赖，按需安装：
+# =====================================================================
+# linearmodels>=5.0     # Python 面板数据工具（随机效应/工具变量，用于结果交叉验证）
+# statsmodels>=0.13     # 更丰富的统计检验
+# matplotlib>=3.6       # 平行趋势图、事件研究图
+# pyreadstat>=1.2       # 读写 .dta / .sav（Stata/SPSS 原生格式）
+# openai>=1.0           # AI 论文助手（自动生成论文语言）
