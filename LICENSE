@@ -19,12 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----------------------------------------------------------------------------
-说明（非许可条款，仅作提示）：
-
-1. 本项目通过命令行调用使用者本机安装的 Stata。Stata 为 StataCorp LLC 的
-   商业软件，使用者需自行拥有合法授权。本项目不包含、不分发 Stata 本体。
-2. do 文件中会调用 reghdfe、ftools、estout 等 Stata 外部命令，它们由各自
-   作者通过 SSC 发布，遵循各自的许可协议，本项目仅自动调用、不作修改与分发。
-3. 当前版权署名：zhibai（仓库：https://github.com/ImZhangTong/-.git）。如需改为姓名+机构形式，直接修改上面的 Copyright 行即可。

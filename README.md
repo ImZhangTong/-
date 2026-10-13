@@ -8,6 +8,7 @@
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![Stata](https://img.shields.io/badge/Engine-Stata%2014%2B-1a5276.svg)](https://www.stata.com/)
+[![CI](https://github.com/ImZhangTong/-/actions/workflows/ci.yml/badge.svg)](https://github.com/ImZhangTong/-/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/badge/tests-106%20passed-brightgreen.svg)](tests/)
 
 ![立理界面](screenshots/01_home.png)
@@ -412,6 +413,7 @@ Windows 下可直接双击 `run_tests.bat`。
 ## 许可与声明
 
 本项目采用 [MIT License](LICENSE)，可自由用于学习、科研与商业场景（保留版权声明即可）。
+完整的第三方依赖与免责声明见 [NOTICE.md](NOTICE.md)。
 
 **重要声明**：
 
