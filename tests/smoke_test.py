@@ -28,7 +28,15 @@ if str(PROJECT_ROOT) not in sys.path:
 
 import numpy as np  # noqa: E402
 
-from config.config import CONFIG, DATA_DIR, RESULT_DIR, environment_report  # noqa: E402
+from config.config import (  # noqa: E402
+    CONFIG,
+    DATA_DIR,
+    RESULT_DIR,
+    enable_safe_console,
+    environment_report,
+)
+
+enable_safe_console()
 from models import MODEL_ORDER, ModelContext, build_spec  # noqa: E402
 from stata import generate_do_file, stata_status  # noqa: E402
 from utils import data_loader, report as rp, variable_detect as vd  # noqa: E402

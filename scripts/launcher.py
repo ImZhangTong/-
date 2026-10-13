@@ -29,6 +29,8 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
+from config.config import enable_safe_console
+
 # ---------------- 基本路径与参数 ----------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 APP_PATH = PROJECT_ROOT / "app.py"

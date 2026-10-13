@@ -24,7 +24,10 @@ OUT_DIR = PROJECT_ROOT / "screenshots"
 
 
 def main() -> int:
-    from playwright.sync_api import sync_playwright
+    from config.config import enable_safe_console
+from playwright.sync_api import sync_playwright
+
+enable_safe_console()
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 

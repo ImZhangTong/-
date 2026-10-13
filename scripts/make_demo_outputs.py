@@ -25,7 +25,9 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from config.config import DATA_DIR, PREPARED_DIR, RESULT_DIR  # noqa: E402
+from config.config import DATA_DIR, PREPARED_DIR, RESULT_DIR, enable_safe_console  # noqa: E402
+
+enable_safe_console()
 from models import ModelContext, build_spec  # noqa: E402
 from stata import generate_do_file, run_and_collect, stata_status  # noqa: E402
 from utils import data_loader, report as rp  # noqa: E402

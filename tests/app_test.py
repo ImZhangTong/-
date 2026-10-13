@@ -28,7 +28,9 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
-from config.config import DATA_DIR  # noqa: E402
+from config.config import DATA_DIR, enable_safe_console  # noqa: E402
+
+enable_safe_console()
 from utils import data_loader  # noqa: E402
 
 PASSED: list = []

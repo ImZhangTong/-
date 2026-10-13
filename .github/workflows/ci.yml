@@ -25,6 +25,16 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         python-version: ["3.10", "3.13"]
 
+    env:
+      # Windows runner 的控制台代码页并非 UTF-8，若不强制 UTF-8，
+      # 脚本 print 中文会抛 UnicodeEncodeError 直接中断（已在本地用
+      # PYTHONIOENCODING=cp1252 复现过该失败）。
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
+      # Streamlit 在 CI 中不弹浏览器、不收集使用统计
+      STREAMLIT_SERVER_HEADLESS: "true"
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -43,21 +53,13 @@ jobs:
       - name: 语法与导入检查
         run: |
           python -m compileall -q app.py config models stata utils scripts tests
-          python -c "import sys; sys.path.insert(0,'.'); from models import list_models; from stata import stata_status; from utils import report, data_loader, variable_detect, fallback_engine; print('全部模块导入成功'); print('模型：', [m['name'] for m in list_models()])"
+          python -c "import sys; sys.path.insert(0,'.'); from config.config import enable_safe_console; enable_safe_console(); from models import list_models; from stata import stata_status; from utils import report, data_loader, variable_detect, fallback_engine; print('全部模块导入成功'); print('模型：', [m['name'] for m in list_models()])"
 
       - name: 端到端冒烟测试（73 项）
         run: python tests/smoke_test.py
-        env:
-          # CI 环境没有 Stata，测试会自动改测错误提示与解析器逻辑；
-          # 同时把 Streamlit 的运行配置设为无交互，避免任何提示阻塞。
-          STREAMLIT_SERVER_HEADLESS: "true"
-          STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
 
       - name: 界面自动化测试（33 项）
         run: python tests/app_test.py
-        env:
-          STREAMLIT_SERVER_HEADLESS: "true"
-          STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
 
       - name: 上传测试产物（失败时便于排查）
         if: failure()

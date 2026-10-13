@@ -325,5 +325,30 @@ def add_project_root_to_syspath() -> None:
         sys.path.insert(0, root)
 
 
+def enable_safe_console() -> None:
+    """
+    让中文提示在「非 UTF-8 控制台」下也不会导致程序崩溃。
+
+    背景（真实踩坑）：
+        Windows 的 cmd / PowerShell 默认代码页不是 UTF-8（常见 cp936、cp1252）。
+        此时 Python 的 print('中文') 会抛出 UnicodeEncodeError 并中断整个脚本——
+        在 GitHub Actions 的 windows-latest 上就表现为 CI 直接失败。
+
+    做法：
+        1. 把标准输出/标准错误的错误处理策略改为 replace，
+           遇到无法编码的字符时输出替代字符而不是抛异常；
+        2. 若当前编码不是 UTF-8，则不做强制切换（避免在 GBK 控制台出现乱码），
+           由调用方（如 run_app.bat）通过 chcp 或 PYTHONUTF8 环境变量决定编码。
+
+    所有会被用户直接运行的入口脚本（tests/、scripts/）都应尽早调用本函数。
+    """
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(errors="replace")
+        except Exception:
+            # 某些被重定向的流不支持 reconfigure，忽略即可
+            pass
+
+
 # 导入本模块即保证输出目录存在
 ensure_dirs()

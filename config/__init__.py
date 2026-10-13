@@ -20,6 +20,7 @@ from .config import (  # noqa: F401
     TEMPLATE_DIR,
     ensure_dirs,
     environment_report,
+    enable_safe_console,
     find_stata_paths,
     resolve_stata_path,
 )
@@ -43,6 +44,7 @@ __all__ = [
     "TEMPLATE_DIR",
     "ensure_dirs",
     "environment_report",
+    "enable_safe_console",
     "find_stata_paths",
     "resolve_stata_path",
 ]
