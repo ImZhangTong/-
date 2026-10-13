@@ -35,23 +35,23 @@ def main() -> int:
         page.wait_for_timeout(4000)
 
         # 1. 首页（未上传数据）
-        page.screenshot(path=str(OUT_DIR / "01_首页.png"))
-        print(f"已保存：{OUT_DIR / '01_首页.png'}")
+        page.screenshot(path=str(OUT_DIR / "01_home.png"))
+        print(f"已保存：{OUT_DIR / '01_home.png'}")
 
         # 2. 载入示例数据
         try:
             page.get_by_text("载入示例数据", exact=False).first.click(timeout=15000)
             page.wait_for_timeout(4000)
-            page.screenshot(path=str(OUT_DIR / "02_数据概览.png"))
-            print(f"已保存：{OUT_DIR / '02_数据概览.png'}")
+            page.screenshot(path=str(OUT_DIR / "02_data_overview.png"))
+            print(f"已保存：{OUT_DIR / '02_data_overview.png'}")
         except Exception as exc:
             print(f"点击「载入示例数据」失败：{exc}")
 
         # 3. 滚动到变量识别与模型设定区域
         page.mouse.wheel(0, 1400)
         page.wait_for_timeout(2500)
-        page.screenshot(path=str(OUT_DIR / "03_变量识别与模型设定.png"))
-        print(f"已保存：{OUT_DIR / '03_变量识别与模型设定.png'}")
+        page.screenshot(path=str(OUT_DIR / "03_variables_and_models.png"))
+        print(f"已保存：{OUT_DIR / '03_variables_and_models.png'}")
 
         browser.close()
     return 0

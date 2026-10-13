@@ -9,7 +9,7 @@
 [![Stata](https://img.shields.io/badge/Engine-Stata%2014%2B-1a5276.svg)](https://www.stata.com/)
 [![Tests](https://img.shields.io/badge/tests-106%20passed-brightgreen.svg)](tests/)
 
-![立理界面](screenshots/01_首页.png)
+![立理界面](screenshots/01_home.png)
 
 ---
 
